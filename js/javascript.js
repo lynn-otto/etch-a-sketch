@@ -2,7 +2,7 @@ function createBlock(sideLengthBlock, borderSizeBlock) {
     const container = document.querySelector('.container');
     const block = document.createElement('div');
     block.classList.add('singleBlock');
-    block.style.cssText = `border: ${borderSizeBlock}px solid blue; width: ${sideLengthBlock-2*borderSizeBlock}px; height: ${sideLengthBlock-2*borderSizeBlock}px;`;
+    block.style.cssText = `border: ${borderSizeBlock}px solid gray; width: ${sideLengthBlock-2*borderSizeBlock}px; height: ${sideLengthBlock-2*borderSizeBlock}px;`;
     block.addEventListener('mouseover', changeColorOfBlock);
     container.appendChild(block);
 }
@@ -17,7 +17,7 @@ function createMultipleBlocks(numberOfBlocksPerRow) {
     const sideLengthBlock = Math.floor(sideLengthContainer/numberOfBlocksPerRow);
     const numberOfNewBlocks = numberOfBlocksPerRow**2;
     for (let i = 0; i<numberOfNewBlocks; i++) {
-        createBlock(sideLengthBlock, 2);
+        createBlock(sideLengthBlock, 1);
     }
 }
 
