@@ -13,11 +13,13 @@ function generateRandomIntegerInbetweenInclusive(lowerBound, upperBound) {
 
 function changeColorOfBlock(block) {
     if (toggledRainbow) {
-        console.log(block.target.style.backgroundColor);
-        const colorRed = generateRandomIntegerInbetweenInclusive(0,255);
-        const colorGreen = generateRandomIntegerInbetweenInclusive(0,255);
-        const colorBlue = generateRandomIntegerInbetweenInclusive(0,255);
-        block.target.style.backgroundColor = `rgba(${colorRed}, ${colorGreen}, ${colorBlue}, 0.5)`;
+        if (block.target.style.backgroundColor == "white" || block.target.style.backgroundColor == "black") {
+            const colorRed = generateRandomIntegerInbetweenInclusive(0,255);
+            const colorGreen = generateRandomIntegerInbetweenInclusive(0,255);
+            const colorBlue = generateRandomIntegerInbetweenInclusive(0,255);
+            block.target.style.backgroundColor = `rgba(${colorRed}, ${colorGreen}, ${colorBlue}, 1.0)`;
+            console.log(block.target.style.backgroundColor);
+        }
     }
     else {
         block.target.style.backgroundColor = 'black';
@@ -60,20 +62,23 @@ function clearGrid() {
 }
 
 function toggleRainbow() {
+    const toggleRainbowButton = document.querySelector('.toggleRainbow');
     if (toggledRainbow) {
         toggledRainbow = false;
         console.log("Toggle off");
+        toggleRainbowButton.style.backgroundColor = 'red';
     }
     else {
         toggledRainbow = true;
         console.log("Toggle on");
+        toggleRainbowButton.style.backgroundColor = 'green';
     }
 }
 
 function chooseGridSize() {
-    let gridSize = Number(prompt("Choose number of blocks per row"));
-    while(gridSize*0!=0 || gridSize<=0 || gridSize > 99) {
-        gridSize = Number(prompt("Please enter a positive number below 100!"))
+    let gridSize = Number(prompt("Please choose number (greater than 0, smaller than 60) of blocks per row."));
+    while(gridSize*0!=0 || gridSize<=0 || gridSize > 59) {
+        gridSize = Number(prompt("Please enter a positive number below 60!"))
     }
     deleteGrid();
     createMultipleBlocks(gridSize);

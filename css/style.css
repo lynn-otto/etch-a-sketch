@@ -3,8 +3,8 @@
 }
 
 .container {
-    width: 500px;
-    height: 500px;
+    width: 480px;
+    height: 480px;
     border: 2px solid black;
     display: flex;
     flex-wrap: wrap;
@@ -22,8 +22,12 @@ body {
 
 button {
     padding: 10px;
-    margin: 20px 0px;
+    margin: 0px 0px 20px;
     border: 1px solid black;
     border-radius: 10px;
     background-color: rgb(32, 144, 178);
+}
+
+.toggleRainbow{
+    background-color: red;
 }
