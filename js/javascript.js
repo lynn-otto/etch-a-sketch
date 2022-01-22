@@ -2,14 +2,13 @@ function createBlock(sideLengthBlock, borderSizeBlock) {
     const container = document.querySelector('.container');
     const block = document.createElement('div');
     block.classList.add('singleBlock');
-    block.style.cssText = `border: ${borderSizeBlock}px solid gray; width: ${sideLengthBlock-2*borderSizeBlock}px; height: ${sideLengthBlock-2*borderSizeBlock}px;`;
+    block.style.cssText = `background-color: white; border: ${borderSizeBlock}px solid gray; width: ${sideLengthBlock-2*borderSizeBlock}px; height: ${sideLengthBlock-2*borderSizeBlock}px;`;
     block.addEventListener('mouseover', changeColorOfBlock);
     container.appendChild(block);
 }
 
 function changeColorOfBlock(block) {
     block.target.style.backgroundColor = 'black';
-    console.log('Hovering');
 }
 
 function createMultipleBlocks(numberOfBlocksPerRow) {
@@ -26,12 +25,21 @@ function pressGridSizeButton() {
     gridSizeButton.addEventListener('click', chooseGridSize);
 }
 
+function pressClearButton() {
+    const clearButton = document.querySelector('.clear');
+    clearButton.addEventListener('click', clearGrid);
+}
+
 function deleteGrid() {
     const blocks = document.querySelectorAll('.singleBlock');
-    console.log('Deleting');
     blocks.forEach(block => block.remove());
 }
 
+function clearGrid() {
+    const blocks = document.querySelectorAll('.singleBlock');
+    console.log('Deleting');
+    blocks.forEach(block => block.style.backgroundColor = 'white');
+}
 function chooseGridSize() {
     let gridSize = Number(prompt("Choose number of blocks per row"));
     while(gridSize*0!=0 || gridSize<=0 || gridSize > 99) {
@@ -42,5 +50,7 @@ function chooseGridSize() {
 
 }
 
+
 createMultipleBlocks(16);
 pressGridSizeButton();
+pressClearButton();
