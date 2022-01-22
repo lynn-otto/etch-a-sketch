@@ -3,7 +3,13 @@ function createBlock(sideLengthBlock, borderSizeBlock) {
     const block = document.createElement('div');
     block.classList.add('singleBlock');
     block.style.cssText = `border: ${borderSizeBlock}px solid blue; width: ${sideLengthBlock-2*borderSizeBlock}px; height: ${sideLengthBlock-2*borderSizeBlock}px;`;
+    block.addEventListener('mouseover', changeColorOfBlock);
     container.appendChild(block);
+}
+
+function changeColorOfBlock(block) {
+    block.target.style.backgroundColor = 'black';
+    console.log('Hovering');
 }
 
 function createMultipleBlocks(numberOfBlocksPerRow) {
