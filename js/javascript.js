@@ -33,7 +33,10 @@ function deleteGrid() {
 }
 
 function chooseGridSize() {
-    const gridSize = Number(prompt("Choose number of blocks per row"));
+    let gridSize = Number(prompt("Choose number of blocks per row"));
+    while(gridSize*0!=0 || gridSize<=0 || gridSize > 99) {
+        gridSize = Number(prompt("Please enter a positive number below 100!"))
+    }
     deleteGrid();
     createMultipleBlocks(gridSize);
 
