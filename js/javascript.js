@@ -7,8 +7,21 @@ function createBlock(sideLengthBlock, borderSizeBlock) {
     container.appendChild(block);
 }
 
+function generateRandomIntegerInbetweenInclusive(lowerBound, upperBound) {
+    return Math.floor(Math.random()* (upperBound - lowerBound + 1)) + lowerBound;
+}
+
 function changeColorOfBlock(block) {
-    block.target.style.backgroundColor = 'black';
+    if (toggledRainbow) {
+        console.log(block.target.style.backgroundColor);
+        const colorRed = generateRandomIntegerInbetweenInclusive(0,255);
+        const colorGreen = generateRandomIntegerInbetweenInclusive(0,255);
+        const colorBlue = generateRandomIntegerInbetweenInclusive(0,255);
+        block.target.style.backgroundColor = `rgba(${colorRed}, ${colorGreen}, ${colorBlue}, 0.5)`;
+    }
+    else {
+        block.target.style.backgroundColor = 'black';
+    }
 }
 
 function createMultipleBlocks(numberOfBlocksPerRow) {
@@ -30,6 +43,11 @@ function pressClearButton() {
     clearButton.addEventListener('click', clearGrid);
 }
 
+function pressToggleRainbowButton() {
+    const toggleRainbowButton = document.querySelector('.toggleRainbow');
+    toggleRainbowButton.addEventListener('click', toggleRainbow);
+}
+
 function deleteGrid() {
     const blocks = document.querySelectorAll('.singleBlock');
     blocks.forEach(block => block.remove());
@@ -40,6 +58,18 @@ function clearGrid() {
     console.log('Deleting');
     blocks.forEach(block => block.style.backgroundColor = 'white');
 }
+
+function toggleRainbow() {
+    if (toggledRainbow) {
+        toggledRainbow = false;
+        console.log("Toggle off");
+    }
+    else {
+        toggledRainbow = true;
+        console.log("Toggle on");
+    }
+}
+
 function chooseGridSize() {
     let gridSize = Number(prompt("Choose number of blocks per row"));
     while(gridSize*0!=0 || gridSize<=0 || gridSize > 99) {
@@ -50,7 +80,8 @@ function chooseGridSize() {
 
 }
 
-
+let toggledRainbow = false;
 createMultipleBlocks(16);
 pressGridSizeButton();
 pressClearButton();
+pressToggleRainbowButton();
